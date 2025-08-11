@@ -1,12 +1,21 @@
 package com.example.employeeapi;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/employees")
 public class EmployeeController {
-    @GetMapping("/employees")
+
+    @GetMapping
     public Employees getEmployees() {
-        return EmployeeManager.getAllEmployees();
+        return EmployeeManager.getAll();
+    }
+
+    @PostMapping
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        Employee created = EmployeeManager.add(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 }
