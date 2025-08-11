@@ -5,6 +5,9 @@ import java.util.List;
 public class Employees {
     private List<Employee> Employees;
 
+    public Employees() {}
+
+
     public Employees(List<Employee> employees) {
         this.Employees = employees;
     }
